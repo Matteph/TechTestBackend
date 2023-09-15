@@ -27,7 +27,7 @@ public class CargoController {
         return new ResponseEntity<>(cargos, HttpStatus.OK);
     }
 
-    @GetMapping("/getAllCargos/{id}")
+    @GetMapping("/getCargo/{id}")
     public ResponseEntity<Cargo> getCargoById(@PathVariable int id) {
         Cargo cargo = cargoService.getCargoById(id);
         if (cargo != null) {
