@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,8 +17,14 @@ public class Empleado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
-    private int cargo_id;
-    private int tipo_contrato_id;
+
+    @ManyToOne
+    @JoinColumn(name = "cargo_id", referencedColumnName = "id")
+    private Cargo cargo;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_contrato_id", referencedColumnName = "id")
+    private TipoContrato tipoContrato;
 
     public int getId() {
         return id;
@@ -34,19 +42,19 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-    public int getCargo_id() {
-        return cargo_id;
+    public Cargo getCargo() {
+        return cargo;
     }
 
-    public void setCargo_id(int cargo_id) {
-        this.cargo_id = cargo_id;
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
 
-    public int getTipo_contrato_id() {
-        return tipo_contrato_id;
+    public TipoContrato getTipoContrato() {
+        return tipoContrato;
     }
 
-    public void setTipo_contrato_id(int tipo_contrato_id) {
-        this.tipo_contrato_id = tipo_contrato_id;
+    public void setTipoContrato(TipoContrato tipoContrato) {
+        this.tipoContrato = tipoContrato;
     }
 }

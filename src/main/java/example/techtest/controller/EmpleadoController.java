@@ -22,14 +22,13 @@ public class EmpleadoController {
     @Autowired
     private EmpleadoService empleadoService;
 
-    // Get all employees
+
     @GetMapping("/getAllEmpleados")
     public ResponseEntity<List<Empleado>> getAllEmpleados() {
         List<Empleado> empleados = empleadoService.getAllEmpleados();
         return new ResponseEntity<>(empleados, HttpStatus.OK);
     }
 
-    // Get an employee by ID
     @GetMapping("/getEmpleado/{id}")
     public ResponseEntity<Empleado> getEmpleadoById(@PathVariable int id) {
         Empleado empleado = empleadoService.getEmpleadoById(id);
@@ -40,21 +39,18 @@ public class EmpleadoController {
         }
     }
 
-    // Create a new employee
     @PostMapping("/createEmpleado")
     public ResponseEntity<Empleado> createEmpleado(@RequestBody Empleado empleado) {
         Empleado createdEmpleado = empleadoService.createEmpleado(empleado);
         return new ResponseEntity<>(createdEmpleado, HttpStatus.CREATED);
     }
 
-    // Update an employee by ID
     @PutMapping("/updateEmpleado/{id}")
     public ResponseEntity<Void> updateEmpleado(@PathVariable int id, @RequestBody Empleado empleado) {
         empleadoService.updateEmpleado(id, empleado);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // Delete an employee by ID
     @DeleteMapping("/deleteEmpleado/{id}")
     public ResponseEntity<Void> deleteEmpleado(@PathVariable int id) {
         empleadoService.deleteEmpleado(id);
