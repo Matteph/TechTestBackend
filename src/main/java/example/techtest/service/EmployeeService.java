@@ -5,9 +5,9 @@ import example.techtest.model.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    public List<Employee> getAllEmployees();
-    public Employee getEmployeeById(int id);
-    public Employee createEmployee(Employee employee);
-    public void updateEmployee(int id, Employee employee);
-    public void deleteEmployee(int id);
+    List<Employee> getAllEmployees();
+    Employee getEmployeeById(int id);
+    Employee createEmployee(Employee employee);
+    void updateEmployee(int id, Employee employee);
+    void deleteEmployee(int id);
 }
