@@ -1,12 +1,10 @@
 package example.techtest.repository;
 
-import example.techtest.model.Empleado;
+import example.techtest.model.Charge;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
-
 @Repository
-public interface EmpleadoRepository extends JpaRepository <Empleado, Integer> {
-
+public interface ChargeRepository extends JpaRepository <Charge, Integer> {
+    Charge findByName(String name);
 }
