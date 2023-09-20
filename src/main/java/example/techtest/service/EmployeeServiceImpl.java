@@ -27,6 +27,21 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public List<Employee> getEmployeesByName(String name) {
+        return employeeRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByCharge(String name) {
+        return employeeRepository.findByChargeNameContainingIgnoreCase(name);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByContractType(String name) {
+        return employeeRepository.findByContractTypeNameContainingIgnoreCase(name);
+    }
+
+    @Override
     public Employee createEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
@@ -37,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setId(id);
             employeeRepository.save(employee);
         }else{
-            throw new RuntimeException("El employee no existe");
+            throw new RuntimeException("The employee doesn't exist");
         }
     }
 

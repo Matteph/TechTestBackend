@@ -39,6 +39,25 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping("/getEmployeesByName/{name}")
+    public ResponseEntity<List<Employee>> getEmployeesByName(@PathVariable String name) {
+        List<Employee> employees = employeeService.getEmployeesByName(name);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/getEmployeesByCharge/{charge}")
+    public ResponseEntity<List<Employee>> getEmployeesByCharge(@PathVariable String charge) {
+        List<Employee> employees = employeeService.getEmployeesByCharge(charge);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/getEmployeesByContractType/{contractType}")
+    public ResponseEntity<List<Employee>> getEmployeesByContractType(@PathVariable String contractType) {
+        List<Employee> employees = employeeService.getEmployeesByContractType(contractType);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+
     @PostMapping("/createEmployee")
     public ResponseEntity<Employee> createEmpleado(@RequestBody Employee employee) {
         Employee createdEmployee = employeeService.createEmployee(employee);
