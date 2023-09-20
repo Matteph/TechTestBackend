@@ -12,5 +12,5 @@ public interface EmployeeService {
     List<Employee> getEmployeesByContractType(String name);
     Employee createEmployee(Employee employee);
     void updateEmployee(int id, Employee employee);
-    void deleteEmployee(int id);
+    boolean deleteEmployee(int id);
 }

@@ -4,6 +4,7 @@ import example.techtest.model.Employee;
 import example.techtest.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +58,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(int id) {
-        employeeRepository.deleteById(id);
+    public boolean deleteEmployee(int id) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+        if (employee.isPresent()) {
+            employeeRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -61,7 +61,6 @@ public class EmployeeController {
     @PostMapping("/createEmployee")
     public ResponseEntity<Employee> createEmpleado(@RequestBody Employee employee) {
         Employee createdEmployee = employeeService.createEmployee(employee);
-        System.out.println("Received JSON: " + employee.toString());
         return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
     }
 
@@ -73,7 +72,11 @@ public class EmployeeController {
 
     @DeleteMapping("/deleteEmployeeById/{id}")
     public ResponseEntity<Void> deleteEmpleado(@PathVariable int id) {
-        employeeService.deleteEmployee(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        boolean deleted = employeeService.deleteEmployee(id);
+        if (deleted) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
